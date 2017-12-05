@@ -31,7 +31,7 @@ public class MyView extends AppCompatImageView {
         super(context, attrs, defStyleAttr);
     }
     Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-    String text = DateFormat.format("HH:mm",new Date()).toString();
+    String text = DateFormat.format("HH:mm",new Date().getTime()+1000*60).toString();
     {
         paint.setTextSize(27);
         paint.setFakeBoldText(true);

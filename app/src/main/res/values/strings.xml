@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">FixPic</string>
+    <string name="shouhuo">待收货</string>
+    <string name="rc_comment">评价</string>
+    <string name="gv_comment1">评价1</string>
+    <string name="gv_comment2">评价2</string>
+    <string name="gv_comment3">评价3</string>
+
 </resources>
