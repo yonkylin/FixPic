@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         Button bt_gv_comment1 = (Button)findViewById(R.id.bt_gv_comment1);
         Button bt_gv_comment2 = (Button)findViewById(R.id.bt_gv_comment2);
         Button bt_gv_comment3 = (Button)findViewById(R.id.bt_gv_comment3);
+        Button bt_mycomment=(Button)findViewById(R.id.bt_my_comment);
         checkPermission();
 
         bt_shouhuo.setOnClickListener(new View.OnClickListener() {
@@ -93,6 +94,16 @@ public class MainActivity extends AppCompatActivity {
                 Bitmap bitmap_Comment3 =BitmapFactory.decodeResource(getResources(),R.drawable.comment3);
                 saveImage( bitmap_Comment3,time,Color.BLACK);
                 gcBitmap(bitmap_Comment3);
+            }
+        });
+
+        bt_mycomment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String time = getTime();
+                Bitmap bitmap_MyComment =BitmapFactory.decodeResource(getResources(),R.drawable.my_comment);
+                saveImage( bitmap_MyComment,time,Color.BLACK);
+                gcBitmap(bitmap_MyComment);
             }
         });
 

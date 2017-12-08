@@ -16,37 +16,48 @@
       <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
+          android:orientation="vertical"
           android:layout_alignParentBottom="true">
+         <LinearLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/bt_shouhuo"
+                android:text="@string/shouhuo"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/bt_rc_comment"
+                android:text="@string/rc_comment"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/bt_gv_comment1"
+                android:text="@string/gv_comment1"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/bt_gv_comment2"
+                android:text="@string/gv_comment2"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/bt_gv_comment3"
+                android:text="@string/gv_comment3"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content" />
+         </LinearLayout>
          <Button
-             android:id="@+id/bt_shouhuo"
-             android:text="@string/shouhuo"
-             android:layout_width="0dp"
-             android:layout_weight="1"
+             android:id="@+id/bt_my_comment"
+             android:text="@string/my_comment"
+             android:layout_width="wrap_content"
              android:layout_height="wrap_content" />
-         <Button
-             android:id="@+id/bt_rc_comment"
-             android:text="@string/rc_comment"
-             android:layout_width="0dp"
-             android:layout_weight="1"
-             android:layout_height="wrap_content" />
-         <Button
-             android:id="@+id/bt_gv_comment1"
-             android:text="@string/gv_comment1"
-             android:layout_width="0dp"
-             android:layout_weight="1"
-             android:layout_height="wrap_content" />
-         <Button
-             android:id="@+id/bt_gv_comment2"
-             android:text="@string/gv_comment2"
-             android:layout_width="0dp"
-             android:layout_weight="1"
-             android:layout_height="wrap_content" />
-         <Button
-             android:id="@+id/bt_gv_comment3"
-             android:text="@string/gv_comment3"
-             android:layout_width="0dp"
-             android:layout_weight="1"
-             android:layout_height="wrap_content" />
+
       </LinearLayout>
 
    </RelativeLayout>
