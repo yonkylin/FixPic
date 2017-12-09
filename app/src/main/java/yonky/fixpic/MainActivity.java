@@ -17,6 +17,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -28,6 +29,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Date;
 
+import static android.R.attr.uiOptions;
 import static yonky.fixpic.R.id.tv_taoqi;
 
 public class MainActivity extends AppCompatActivity {
@@ -37,12 +39,29 @@ public class MainActivity extends AppCompatActivity {
     }
     public int flag;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         View decorView = getWindow().getDecorView();
-        int uiOptions = View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY  |View.SYSTEM_UI_FLAG_HIDE_NAVIGATION| View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN|View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
-        decorView.setSystemUiVisibility(uiOptions);
+        decorView.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
+            @Override
+            public void onSystemUiVisibilityChange(int i) {
+                Log.e("yonky",i+"");
+                int uiOptions;
+                if(i==0) {
+                    uiOptions = View.SYSTEM_UI_FLAG_LOW_PROFILE;
+                }else{
+                    uiOptions = View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
+                }
+                getWindow().getDecorView().setSystemUiVisibility(uiOptions);
+
+            }
+        });
+        int uiOptions = View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
+            decorView.setSystemUiVisibility(uiOptions);
+
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
 
