@@ -28,9 +28,14 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Date;
 
+import static yonky.fixpic.R.id.tv_taoqi;
+
 public class MainActivity extends AppCompatActivity {
 
-
+    public enum BUTTON_TYPE{
+        SHOUHUO,RC_COMMENT,GV_COMMENT1,GV_COMMENT2,GV_COMMENT3,MY_COMMENT
+    }
+    public int flag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,29 +59,18 @@ public class MainActivity extends AppCompatActivity {
         Button bt_gv_comment2 = (Button)findViewById(R.id.bt_gv_comment2);
         Button bt_gv_comment3 = (Button)findViewById(R.id.bt_gv_comment3);
         Button bt_mycomment=(Button)findViewById(R.id.bt_my_comment);
+        final EditText et_taoqi=(EditText)findViewById(R.id.tv_taoqi);
         checkPermission();
 
         bt_shouhuo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int taoqi_x= 1920;
-                int taoqi_y=525;
-               ArrayList<String> texts=new ArrayList<String>();
-                ArrayList<Integer>x = new ArrayList<Integer>();
-                ArrayList<Integer>y = new ArrayList<Integer>();
-                texts.add(getTime());
-                x.add(taoqi_x);
-                y.add(taoqi_y);
-
+                flag=BUTTON_TYPE.SHOUHUO.ordinal();
                Bitmap receivingBitmap =BitmapFactory.decodeResource(getResources(),R.drawable.receiving);
               paintSet();
                 paint.setColor(Color.WHITE);
-                texts.add("800");
-                x.add((int)(receivingBitmap.getWidth() - paint.measureText(texts.get(0))) / 2);
-                y.add(80);
-             saveImage(receivingBitmap,texts);
-//                paint.setFakeBoldText(false);
-//                saveImage(receivingBitmap,texts,taoqi_x,taoqi_y);
+                String taoqi = et_taoqi.getText().toString();
+             saveImage(receivingBitmap,taoqi);
                 gcBitmap(receivingBitmap);
 
             }
@@ -84,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
         bt_rc_comment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                flag= BUTTON_TYPE.RC_COMMENT.ordinal();
                 String time = getTime();
                 Bitmap commentBitmap = BitmapFactory.decodeResource(getResources(),R.drawable.comment_js);
                 paintSet();
@@ -94,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
         bt_gv_comment1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                flag=BUTTON_TYPE.GV_COMMENT1.ordinal();
                 String time = getTime();
                 Bitmap bitmap_Comment1 =BitmapFactory.decodeResource(getResources(),R.drawable.comment1);
                 paintSet();
@@ -104,6 +100,8 @@ public class MainActivity extends AppCompatActivity {
         bt_gv_comment2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                flag=BUTTON_TYPE.GV_COMMENT2.ordinal();
                 String time = getTime();
                 Bitmap bitmap_Comment2 =BitmapFactory.decodeResource(getResources(),R.drawable.comment2);
                 paintSet();
@@ -114,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
         bt_gv_comment3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                flag=BUTTON_TYPE.GV_COMMENT3.ordinal();
                 String time = getTime();
                 Bitmap bitmap_Comment3 =BitmapFactory.decodeResource(getResources(),R.drawable.comment3);
                 paintSet();
@@ -125,6 +124,7 @@ public class MainActivity extends AppCompatActivity {
         bt_mycomment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                flag=BUTTON_TYPE.MY_COMMENT.ordinal();
                 String time = getTime();
                 Bitmap bitmap_MyComment =BitmapFactory.decodeResource(getResources(),R.drawable.my_comment);
                 paintSet();
@@ -144,17 +144,26 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-    private  void saveImage(Bitmap beforeBitmap,String text){
+    public  void saveImage(Bitmap beforeBitmap,String text){
         ArrayList<String> texts  = new ArrayList<>();
         ArrayList<Integer>x=new ArrayList<>();
         ArrayList<Integer>y = new ArrayList<>();
-        texts.add(text);
-        x.add((int)(beforeBitmap.getWidth() - paint.measureText(text)) / 2);
-        y.add(80);
+
+       switch (flag){
+           case 0:
+               texts.add(text);
+               x.add(1900);
+               y.add(570);
+
+           default:
+               texts.add(getTime());
+               x.add((int)(beforeBitmap.getWidth() - paint.measureText(text)) / 2);
+               y.add(80);
+       }
         saveImage(beforeBitmap,texts,x,y);
     }
 
-    private  void saveImage(Bitmap beforeBitmap,ArrayList<String> texts,ArrayList<Integer> x,ArrayList<Integer> y){
+    public  void saveImage(Bitmap beforeBitmap,ArrayList<String> texts,ArrayList<Integer> x,ArrayList<Integer> y){
 //        imageView.setDrawingCacheEnabled(true);//开启catch，开启之后才能获取ImageView中的bitmap
         Bitmap bitmap = drawTextToBitmap(beforeBitmap,texts,x,y);
         MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, "截图", "");
