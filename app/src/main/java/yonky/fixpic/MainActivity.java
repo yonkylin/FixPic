@@ -40,7 +40,9 @@ public class MainActivity extends AppCompatActivity {
         decorView.setSystemUiVisibility(uiOptions);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
-
+        Enum<String> Flag=new Enum<>(){
+                "SHOUHUO","RC_COMMENT","GV_COMMENT1","GV_COMMENT2","GV_COMMENT3","MY_COMMENT"
+        }
 //        Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
 //        ActionBar actionBar = getActionBar();
 //        actionBar.hide();
